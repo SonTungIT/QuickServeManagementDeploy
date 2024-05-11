@@ -1,4 +1,4 @@
-import { FaBars, FaSearch, FaUserCircle } from "react-icons/fa"
+import { FaSearch, FaUserCircle } from "react-icons/fa"
 
 const NavbarComponent = () => {
     return (
