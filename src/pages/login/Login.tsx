@@ -1,5 +1,5 @@
-import LoginForm from "../components/AuthComponent/LoginForm"
-import BannerLogin from "../assets/images/banner_login.png"
+import LoginForm from "../../components/AuthComponent/LoginForm"
+import BannerLogin from "../../assets/images/banner_login.png"
 
 const Login = () => {
     return (
