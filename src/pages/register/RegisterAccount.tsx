@@ -1,6 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import SidebarComponent from "../../components/ManagementComponent/SidebarComponent "
-import FormRegister from "./FormRegister";
+import FormRegister from "../../components/AuthComponent/FormRegister";
 
 const RegisterAccount = () => {
     return (

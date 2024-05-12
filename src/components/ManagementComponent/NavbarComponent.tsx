@@ -21,13 +21,13 @@ const NavbarComponent = () => {
                 <div className="relative">
                     <button className="text-white-500 group">
                         <FaUserCircle className="w-6 h-6 mt-1 mr-6" />
-                        <div className="z-10 text-left hidden absolute rounded-lg text-back shadow w-32 group-focus:block right-0 top-full">
-                            <ul className="text-base text-gray-950 gap-4 p-4">
+                        <div className="z-10 text-left hidden absolute rounded-lg text-back-shadow w-32 group-focus:block right-0 top-full ">
+                            <ul className="text-base text-gray-950 gap-4 p-4 bg-gray-300 mt-3">
                                 <li className="hover:bg-orange-500 rounded-md">
                                     <a href="">Hồ sơ</a>
                                 </li>
                                 <li className="mt-2 hover:bg-orange-500 rounded-md">
-                                    <a href="">Đăng xuất</a>
+                                    Đăng Xuất
                                 </li>
                             </ul>
                         </div>

@@ -1,23 +1,29 @@
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../../assets/logo/icon-web.png';
 import menu from './listMenu.ts';
 import NavbarComponent from './NavbarComponent.tsx';
 
 const SidebarComponent = () => {
+  const location = useLocation();
+
+  // Tìm menu item tương ứng với đường dẫn hiện tại
+  const activeMenuItem = menu.adminMenu.find(item => item.url === location.pathname);
+
   return (
     <div className='flex'>
       <div className="w-56 bg-gray-800 fixed h-full">
         <div className='my-2 mb-4'>
-          <h1 className="text-2xl text-white-500 font-bold ml-4">Admin Dashboard</h1>
+          <h1 className="text-2xl font-bold ml-4 text-white-500">{activeMenuItem ? activeMenuItem.title : 'Admin Dashboard'}</h1>
         </div>
         <hr />
         {menu.adminMenu.map((item, index) => (
           <ul className='mt-3 text-white-500 font-bold' key={index}>
-            <li className='mb-2 rounded hover:shadow hover:bg-orange-500 py-2 cursor-pointer flex'>
-              <img src={item.icon} className='w-6 h-6 inline-block ml-2 text-white-500' />
-              <a href="" className='px-3'>
-                {item.title}
-              </a>
-            </li>
+            <Link to={item.url} className=''>
+              <li className={`mb-2 gap-6 rounded hover:shadow hover:bg-orange-500 py-2 cursor-pointer flex ${item.url === location.pathname ? 'text-orange-500' : ''}`}>
+                <img src={item.icon} className='w-6 h-6 inline-block ml-2' />
+                <span>{item.title}</span>
+              </li>
+            </Link>
           </ul>
         ))}
         <div className='mt-64'>

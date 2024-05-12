@@ -21,14 +21,14 @@ const LoginForm = () => {
                         className='mt-2 border-2 border-orange-400 p-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 w-full' />
                 </div>
                 <div className='flex flex-col sm:flex-row items-center mt-4 w-full sm:w-80 gap-12'>
-                    <Link to={'/admin-home'}>
+                    <Link to={'/admin-account'}>
                         <button
                             type="submit"
                             className='bg-orange-500 p-3 rounded-xl text-black font-bold hover:bg-orange-600 cursor-pointer w-full sm:w-48'>
                             Đăng nhập
                         </button>
                     </Link>
-                    <a href="#" className='text-red-600 underline font-normal text-base mt-2 sm:mt-0 w-full sm:w-44'>Quên mật khẩu?</a>
+                    <Link to="#" className='text-red-600 underline font-normal text-base mt-2 sm:mt-0 w-full sm:w-44'>Quên mật khẩu?</Link>
                 </div>
             </form>
             <div className='w-full sm:w-80 mt-8'>
