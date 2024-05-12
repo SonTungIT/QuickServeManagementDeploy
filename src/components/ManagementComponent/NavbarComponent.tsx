@@ -2,7 +2,7 @@ import { FaSearch, FaUserCircle } from "react-icons/fa"
 
 const NavbarComponent = () => {
     return (
-        <nav className="bg-gray-900 py-3 flex justify-between w-full">
+        <nav className="bg-gray-900 py-3 flex justify-between w-full fixed">
             <div className="flex items-center text-xl">
                 <span className="text-white-500 font-semibold ml-5">Quick Serve Management</span>
             </div>

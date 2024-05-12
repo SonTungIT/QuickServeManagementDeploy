@@ -10,8 +10,7 @@ const Home = () => {
                 <div className="md:col-span-2">
                     <SidebarComponent />
                 </div>
-                <div className="md:col-span-10 w-full">
-                    <NavbarComponent />
+                <div className="md:col-span-10">
                 </div>
             </div>
         </div>
