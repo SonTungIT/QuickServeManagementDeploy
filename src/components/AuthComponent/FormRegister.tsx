@@ -57,11 +57,9 @@ const FormRegister = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-col md:flex-row md:gap-12'>
-                    <div className='mb-6 md:w-2/4 ml-auto mr-20'>
-                        <button type='submit' className='p-3 bg-green-600 text-white rounded-md shadow-sm hover:bg-orange-500 mr-4'>Đăng ký</button>
-                        <button type='submit' className='p-3 bg-blue-600 text-white rounded-md shadow-sm hover:bg-orange-500 mr-4'>Cập Nhập</button>
-                        <button type='submit' className='p-3 bg-red-500 text-white rounded-md shadow-sm hover:bg-orange-500'>Khoá người dùng</button>
+                <div className=''>
+                    <div className='mb-6 md:w-1/4 ml-auto mr-36'>
+                        <button type='submit' className='p-3 bg-green-600 text-white rounded-md shadow-sm hover:bg-orange-500'>Đăng ký</button>
                     </div>
                 </div>
             </form>
