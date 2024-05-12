@@ -1,4 +1,3 @@
-import NavbarComponent from "../../components/ManagementComponent/NavbarComponent"
 import SidebarComponent from "../../components/ManagementComponent/SidebarComponent "
 
 const Home = () => {
