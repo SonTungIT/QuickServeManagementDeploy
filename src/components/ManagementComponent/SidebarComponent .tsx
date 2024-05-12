@@ -28,7 +28,8 @@ const SidebarComponent = () => {
           </div>
         </div>
       </div>
-      <NavbarComponent /></div>
+      <NavbarComponent />
+    </div>
 
   )
 }

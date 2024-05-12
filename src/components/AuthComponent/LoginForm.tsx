@@ -21,7 +21,7 @@ const LoginForm = () => {
                         className='mt-2 border-2 border-orange-400 p-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 w-full' />
                 </div>
                 <div className='flex flex-col sm:flex-row items-center mt-4 w-full sm:w-80 gap-12'>
-                    <Link to={'/home'}>
+                    <Link to={'/admin-home'}>
                         <button
                             type="submit"
                             className='bg-orange-500 p-3 rounded-xl text-black font-bold hover:bg-orange-600 cursor-pointer w-full sm:w-48'>
