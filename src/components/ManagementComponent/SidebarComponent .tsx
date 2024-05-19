@@ -1,12 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '../../assets/logo/icon-web.png';
 import menu from './listMenu.ts';
 import NavbarComponent from './NavbarComponent.tsx';
 
 const SidebarComponent = () => {
   const location = useLocation();
 
-  // Tìm menu item tương ứng với đường dẫn hiện tại
   const activeMenuItem = menu.adminMenu.find(item => item.url === location.pathname);
 
   return (
@@ -26,13 +24,6 @@ const SidebarComponent = () => {
             </Link>
           </ul>
         ))}
-        <div className='mt-64'>
-          <hr />
-          <div className='flex flex-col items-center text-center'>
-            <img src={Logo} alt="Logo" className="w-48 h-48 sm:w-32 sm:h-32" />
-            <h3 className='text-2xl sm:text-4xl font-bold mt-4 text-orange-600'>QuickServe</h3>
-          </div>
-        </div>
       </div>
       <NavbarComponent />
     </div>

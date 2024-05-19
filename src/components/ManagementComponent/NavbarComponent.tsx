@@ -1,9 +1,11 @@
 import { FaSearch, FaUserCircle } from "react-icons/fa"
+import Logo from '../../assets/logo/icon-web.png';
 
 const NavbarComponent = () => {
     return (
         <nav className="bg-gray-900 py-3 flex justify-between w-full fixed">
             <div className="flex items-center text-xl">
+                <img src={Logo} alt="Logo" className="w-8 h-8 sm:w-8 sm:h-8" />
                 <span className="text-white-500 font-semibold ml-5">Quick Serve Management</span>
             </div>
             <div className="flex items-center gap-x-5">
