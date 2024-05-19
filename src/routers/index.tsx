@@ -3,6 +3,7 @@ import Login from "../pages/login/Login"
 import Home from "../pages/home/Home"
 import RegisterAccount from "../pages/register/RegisterAccount"
 import AccountManagement from "../pages/account-management/AccountManagement"
+import UserProfile from "../pages/user-profile/UserProfile"
 const AppRouter = () => {
     return (
         <Routes>
@@ -14,6 +15,8 @@ const AppRouter = () => {
             <Route path="/admin-home" element={<Home />} />
             <Route path="/admin-account" element={<AccountManagement />} />
             <Route path="/admin-register" element={<RegisterAccount />} />
+
+            <Route path="/user-profile" element={<UserProfile />} />
         </Routes >
     )
 }
