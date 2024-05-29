@@ -3,7 +3,7 @@ import Logo from '../../assets/images/logo.png';
 import { useAppDispatch } from '../../services/store/store';
 import { useForm } from 'react-hook-form';
 import { loginUser, setError } from '../../services/features/authSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type FormLoginValues = {
     email: string,
@@ -13,6 +13,7 @@ type FormLoginValues = {
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const [isLoading, setIsLoading] = useState(false);
 
     const form = useForm<FormLoginValues>({
         defaultValues: {
@@ -37,7 +38,9 @@ const LoginForm = () => {
                 }
                 console.log("Roles:" + roles[0]);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error))
+            .finally(() => setIsLoading(false));
+
     };
     useEffect(() => {
         return () => {
@@ -73,7 +76,8 @@ const LoginForm = () => {
                     <button
                         type="submit"
                         className='bg-orange-500 p-3 rounded-xl text-black font-bold hover:bg-orange-600 cursor-pointer w-full sm:w-48'>
-                        Đăng nhập
+                        {isLoading ? 'Loading...' : 'Đăng nhập'}
+
                     </button>
                     <Link to="#" className='text-red-600 underline font-normal text-base mt-2 sm:mt-0 w-full sm:w-44'>Quên mật khẩu?</Link>
                 </div>
