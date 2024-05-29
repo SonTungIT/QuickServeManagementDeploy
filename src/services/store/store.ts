@@ -1,22 +1,24 @@
 // Import các module cần thiết
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import accountSlice from '../features/authSlice';
 // Định nghĩa cấu hình persist
 const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: [""],
+    key: 'root',
+    storage,
+    whitelist: ['account'],
 };
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+    account: accountSlice,
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+    reducer: persistedReducer,
 });
 
 export const persistor = persistStore(store);

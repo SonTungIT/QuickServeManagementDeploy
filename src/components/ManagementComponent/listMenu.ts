@@ -3,7 +3,7 @@ import storeManagementIcon from '../../assets/icon/store-management.png';
 import chartRevenueIcon from '../../assets/icon/chart-revenue.png';
 import feedbackIcon from '../../assets/icon/feedback.png';
 import adminReportIcon from '../../assets/icon/admin-report.png';
-
+//Icon StoreManagement
 const listMenu = {
     adminMenu: [
         {
@@ -38,7 +38,7 @@ const listMenu = {
         {
             title: 'Store Management',
             url: '/store-management',
-            icon: 'fa fa-store',
+            icon: storeManagementIcon,
         },
     ],
     brandManagementMenu: [

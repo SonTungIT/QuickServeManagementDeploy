@@ -3,7 +3,7 @@ import { IUserProfile } from '../models/UserProfile';
 const userProfile: IUserProfile = {
     userId: 1,
     avatar: 'https://mekoong.com/wp-content/uploads/2022/11/pexels-ron-lach-7792647-scaled.jpg',
-    fullname: 'Nguyễn Sơn Tùng',
+    fullname: 'Lê Sơn Tùng',
     username: 'kakabear',
     role: 'Admin',
     email: 'songtungit@gmail.com',
