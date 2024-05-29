@@ -1,4 +1,3 @@
-import { IUserProfile } from '../models/UserProfile';
 
 const userProfile: IUserProfile = {
     userId: 1,
@@ -13,3 +12,16 @@ const userProfile: IUserProfile = {
     address: '1234 Main St, City, State 12345',
 };
 export default userProfile;
+
+interface IUserProfile {
+    userId: number;
+    avatar: string;
+    fullname: string;
+    username: string;
+    role: string;
+    email: string;
+    gender: string;
+    phone: string;
+    birthday: Date;
+    address: string;
+}
