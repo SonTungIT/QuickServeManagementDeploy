@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IUserInfo } from "../../models/UserInfor";
-import axios from "axios";
-import { getAllUsersEndpoint } from "../api/apiConfig";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { IUserInfo } from '../../models/UserInfor';
+import axios from 'axios';
+import { getAllUsersEndpoint } from '../api/apiConfig';
 
 interface UserState {
     loading: boolean;
@@ -29,7 +29,9 @@ export const getAllUser = createAsyncThunk<IUserInfo[], void>(
             });
             return response.data;
         } catch (error: any) {
-            return thunkAPI.rejectWithValue(error.response?.data?.errorMessages || 'Unknown error');
+            return thunkAPI.rejectWithValue(
+                error.response?.data?.errorMessages || 'Unknown error',
+            );
         }
     },
 );
@@ -40,7 +42,7 @@ export const usersSlice = createSlice({
     reducers: {
         setError: (state, action) => {
             state.error = action.payload;
-        }, 
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getAllUser.pending, (state) => {
@@ -55,7 +57,7 @@ export const usersSlice = createSlice({
             state.loading = false;
             state.error = action.payload as string;
         });
-    }
+    },
 });
 
 export const { setError } = usersSlice.actions;

@@ -36,7 +36,6 @@ const FormLogin = () => {
                 } else if (roles[0] === 'Brand_Manager') {
                     navigate('/dashboard');
                 }
-                console.log("Roles:" + roles[0]);
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));

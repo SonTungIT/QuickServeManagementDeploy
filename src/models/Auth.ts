@@ -3,7 +3,6 @@ export interface ILoginResponse {
     success: boolean;
     errors: string[] | null;
 }
-
 export interface IUser {
     id: string;
     userName: string;
@@ -20,9 +19,8 @@ export interface ILogin {
 }
 
 export interface IRegister {
-    email:string;
-    ơassword: string;
+    email: string;
+    password: string;
     userName: string;
-    role:string
+    role: string;
 }
-
