@@ -41,7 +41,7 @@ const FormRegister = () => {
         setIsLoading(true);
         dispatch(registerAccountByAdmin(data))
             .unwrap()
-            .then((response) => {
+            .then(() => {
                 reset({
                     email: '',
                     username: '',
