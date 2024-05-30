@@ -18,63 +18,62 @@ import {
     TableRow,
     Typography,
 } from '@mui/material';
-import { IUser } from '../../models/User';
-// import { type Person, data } from './makeData';
-import data from '../../data/userData';
+import { useAppDispatch, useAppSelector } from '../../services/store/store';
+import { useEffect } from 'react';
+import { getAllUser } from '../../services/features/userSlice';
+import { IUserInfo } from '../../models/UserInfor';
 
-const columns: MRT_ColumnDef<IUser>[] = [
+const columns: MRT_ColumnDef<IUserInfo>[] = [
     {
-        accessorKey: 'fullname',
-        header: 'Họ và Tên',
+        accessorKey: 'id',
+        header: 'User ID',
     },
     {
-        accessorKey: 'gender',
-        header: 'Giới tính',
+        accessorKey: 'userName',
+        header: 'Tên Đăng nhập',
     },
     {
         accessorKey: 'email',
         header: 'Email',
     },
     {
-        accessorKey: 'phone',
-        header: 'Số điện thoại',
-    },
-    {
-        accessorKey: 'role',
+        accessorKey: 'roles',
         header: 'Chức danh',
     },
     {
-        accessorKey: 'birthday',
-        header: 'Sinh nhật',
-        Cell: ({ cell }) => cell.row.original.birthday instanceof Date ? cell.row.original.birthday.toLocaleDateString() : cell.row.original.birthday,
+        accessorKey: 'phoneNumber',
+        header: 'Số điện thoại',
+    },
+    {
+        accessorKey: 'name',
+        header: 'Tên',
     },
     {
         accessorKey: 'address',
         header: 'Địa chỉ',
     },
     {
-        accessorKey: 'status',
-        header: 'Trạng thái',
-        Cell: ({ cell }) => (
-            <span style={{
-                color: cell.row.original.status ? 'green' : 'red',
-                fontWeight: 'bold',
-                borderRadius: '10px',
-                border: cell.row.original.status ? '1px solid #b7f5a4' : '1px solid #ed9a82',
-                padding: '4px',
-                backgroundColor: cell.row.original.status ? '#b7f5a4' : '#ed9a82',
-            }}>
-                {cell.row.original.status ? 'Active' : 'Inactive'}
-            </span>
-        ),
+        accessorKey: 'avatar',
+        header: 'Ảnh đại diện',
     },
-
+    {
+        accessorKey: 'created',
+        header: 'Ngày tạo',
+        Cell: ({ cell }) => cell.row.original.created instanceof Date ? cell.row.original.created.toLocaleDateString() : cell.row.original.created,
+    },
 ];
 
 const AccountList = () => {
+    const dispatch = useAppDispatch();
+    const { users } = useAppSelector((state) => state.users);
+
+    useEffect(() => {
+        dispatch(getAllUser());
+    }, [dispatch]);
+
     const table = useMaterialReactTable({
         columns,
-        data,
+        data: users || [],
         enableRowSelection: true,
         initialState: {
             pagination: { pageSize: 5, pageIndex: 0 },
@@ -97,7 +96,6 @@ const AccountList = () => {
                     alignItems: 'center',
                 }}
             >
-
                 <MRT_GlobalFilterTextField table={table} />
                 <MRT_TablePagination table={table} />
             </Box>
@@ -147,3 +145,4 @@ const AccountList = () => {
 };
 
 export default AccountList;
+

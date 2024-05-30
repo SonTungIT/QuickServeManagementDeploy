@@ -4,3 +4,6 @@ export const BASE_URL =
 //Athentication endpoints
 export const loginEndpoint = `${BASE_URL}/Account/Authenticate`;
 export const registerEndpoint = '/register';
+
+//User endpoints
+export const getAllUsersEndpoint = `${BASE_URL}/Account/GetPagedListAccountQuery`;

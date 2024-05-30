@@ -1,5 +1,5 @@
-import LoginForm from "../../components/AuthComponent/LoginForm"
 import BannerLogin from "../../assets/images/banner_login.png"
+import FormLogin from "../../components/AuthComponent/FormLogin"
 const Login = () => {
 
     return (
@@ -10,7 +10,7 @@ const Login = () => {
                 />
             </div>
             <div className="md:col-span-4">
-                <LoginForm />
+                <FormLogin />
             </div>
         </div>
     )

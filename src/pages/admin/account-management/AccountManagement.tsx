@@ -1,8 +1,9 @@
 import { FaListAlt, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import AccountList from "../../../components/AccountList/AccountList";
 import SidebarComponent from "../../../components/ManagementComponent/SidebarComponent ";
 
-const StoreManagement = () => {
+const AccountManagement = () => {
     return (
         <div className="">
             <div className="grid grid-cols-1 md:grid-cols-12 md:p-0">
@@ -14,7 +15,7 @@ const StoreManagement = () => {
                     <div className="flex">
                         <div className="flex flex-row text-3xl">
                             <FaListAlt className="text-orange-500" />
-                            <h3 className="font-bold ml-6">Quản lí cửa hàng</h3>
+                            <h3 className="font-bold ml-6">Quản lí tài khoản</h3>
                         </div>
                         <div className="ml-auto">
                             <Link to='/admin-register'>
@@ -26,7 +27,7 @@ const StoreManagement = () => {
                         </div>
                     </div>
                     <div className="w-full overflow-auto">
-
+                        <AccountList />
                     </div>
                 </div>
             </div>
@@ -34,4 +35,4 @@ const StoreManagement = () => {
     )
 }
 
-export default StoreManagement;
+export default AccountManagement;

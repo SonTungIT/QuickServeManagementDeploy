@@ -10,7 +10,7 @@ type FormLoginValues = {
     password: string
 }
 
-const LoginForm = () => {
+const FormLogin = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(false);
@@ -30,11 +30,11 @@ const LoginForm = () => {
             .then((response) => {
                 const roles = response.data.roles;
                 if (roles[0] === 'Admin') {
-                    navigate('/admin-account');
+                    navigate('/account-management');
                 } else if (roles[0] === 'Store_Manager') {
-                    navigate('/store-management');
+                    navigate('/employee-management');
                 } else if (roles[0] === 'Brand_Manager') {
-                    navigate('/brand-management');
+                    navigate('/dashboard');
                 }
                 console.log("Roles:" + roles[0]);
             })
@@ -90,4 +90,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default FormLogin;

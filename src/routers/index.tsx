@@ -1,10 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import Login from "../pages/login/Login"
-import Home from "../pages/home/Home"
-import RegisterAccount from "../pages/register/RegisterAccount"
-import AccountManagement from "../pages/account-management/AccountManagement"
+import Home from "../pages/admin/admin-home/Home"
+import RegisterAccount from "../pages/admin/register/RegisterAccount"
 import UserProfile from "../pages/user-profile/UserProfile"
-import StoreManagement from "../pages/store-manager/StoreManagement/StoreManagement"
+import AccountManagement from "../pages/admin/account-management/AccountManagement"
+import EmployeeManagement from "../pages/store-manager/EmployeeManagement/EmployeeManagement"
+import Dashboard from "../pages/brand-manager/dashboard/Dashboard"
 const AppRouter = () => {
     return (
         <Routes>
@@ -17,11 +18,14 @@ const AppRouter = () => {
 
             {/* Admin */}
             <Route path="/admin-home" element={<Home />} />
-            <Route path="/admin-account" element={<AccountManagement />} />
+            <Route path="/account-management" element={<AccountManagement />} />
             <Route path="/admin-register" element={<RegisterAccount />} />
 
             {/* Store Manager */}
-            <Route path="/store-management" element={<StoreManagement />} />
+            <Route path="/employee-management" element={<EmployeeManagement />} />
+
+            {/* Brand Manager  */}
+            <Route path="/dashboard" element={<Dashboard />} />
 
         </Routes >
     )

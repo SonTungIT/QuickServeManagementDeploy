@@ -8,7 +8,7 @@ const listMenu = {
     adminMenu: [
         {
             title: 'QL. Tài Khoản',
-            url: '/admin-account',
+            url: '/account-management',
             icon: adminIcon,
         },
         {

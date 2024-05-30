@@ -4,15 +4,17 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import accountSlice from '../features/authSlice';
+import userSlice from '../features/userSlice';
 // Định nghĩa cấu hình persist
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['account'],
+    whitelist: ['account',"users"],
 };
 
 const rootReducer = combineReducers({
     account: accountSlice,
+     users: userSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

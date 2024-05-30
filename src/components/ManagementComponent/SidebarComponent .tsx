@@ -10,7 +10,6 @@ const SidebarComponent = () => {
   const activeMenuItem = menu.adminMenu.find(item => item.url === location.pathname);
   const { account } = useAppSelector((state) => state.account);
 
-  console.log(account?.roles)
   return (
     <div className='flex'>
       <div className="w-56 bg-gray-800 fixed h-full">

@@ -1,4 +1,4 @@
-import SidebarComponent from "../../components/ManagementComponent/SidebarComponent "
+import SidebarComponent from "../../../components/ManagementComponent/SidebarComponent "
 
 const Home = () => {
     return (
