@@ -42,7 +42,7 @@ const UserProfile = () => {
                     </div>
                     <div>
                         <UserInformation
-                            userId={user?.id}
+                            // userId={user?.id}
                             username={user?.userName}
                             email={user?.email}
                             role={user?.roles[0]}
