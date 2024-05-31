@@ -6,3 +6,4 @@ export const registerAccountByAdminEndpoint = `${BASE_URL}/Account/CreateAccount
 
 //User endpoints
 export const getAllUsersEndpoint = `${BASE_URL}/Account/GetPagedListAccountQuery`;
+export const getUserByIdEndpoint = `${BASE_URL}/Account/GetAccountById`;

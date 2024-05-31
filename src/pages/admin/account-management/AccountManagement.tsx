@@ -19,7 +19,7 @@ const AccountManagement = () => {
                         </div>
                         <div className="ml-auto">
                             <Link to='/admin-register'>
-                                <button className="bg-green-500 hover:bg-organge-500 text-white font-bold p-3 rounded flex items-center justify-between mr-12">
+                                <button className="bg-orange-500 hover:bg-organge-500 text-white font-bold p-3 rounded flex items-center justify-between mr-12">
                                     <FaPlus className="text-base mr-2" />
                                     <span>Thêm Nhân Viên</span>
                                 </button>

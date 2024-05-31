@@ -7,6 +7,5 @@ export interface IUserInfo {
     name: string | null;
     address?: string | null;
     avatar?: string | null;
-    created: Date |string
+    created: Date | string;
 }
-

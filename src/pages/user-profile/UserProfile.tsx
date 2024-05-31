@@ -2,8 +2,22 @@ import { FaKey, FaLock } from "react-icons/fa"
 import SidebarComponent from "../../components/ManagementComponent/SidebarComponent "
 import UserInformation from "../../components/UserProfileComponent/UserInformation"
 import { Link } from "react-router-dom"
+import { useAppDispatch } from "../../services/store/store"
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getUserById } from "../../services/features/userSlice"
 
 const UserProfile = () => {
+    const dispatch = useAppDispatch()
+    const { account } = useSelector((state: any) => state.account)
+    const { user } = useSelector((state: any) => state.users)
+    console.log(user)
+
+    useEffect(() => {
+        dispatch(getUserById({ id: account.id }))
+    }, [])
+
+
     return (
         <div className="">
             <div className="grid grid-cols-1 md:grid-cols-12 md:p-0">
@@ -27,7 +41,17 @@ const UserProfile = () => {
                         </div>
                     </div>
                     <div>
-                        <UserInformation />
+                        <UserInformation
+                            userId={user?.id}
+                            username={user?.userName}
+                            email={user?.email}
+                            role={user?.roles[0]}
+                            phoneNumber={user?.phoneNumber}
+                            name={user?.name}
+                            address={user?.address}
+                            avatar={user?.avatar}
+                            created={user?.created}
+                        />
                     </div>
                 </div>
             </div>
