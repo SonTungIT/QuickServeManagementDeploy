@@ -1,7 +1,5 @@
-import React from 'react';
-
 type UserInformationProps = {
-    userId: string;
+    // userId: string;
     username: string;
     email: string;
     role: string;
@@ -13,7 +11,7 @@ type UserInformationProps = {
 }
 
 const UserInformation = ({
-    userId,
+    // userId,
     username,
     email,
     role,
@@ -62,6 +60,7 @@ const UserInformation = ({
                                     <div className='mb-6 md:w-1/3'>
                                         <label htmlFor="role" className='text-base font-semibold'>Chức danh nhân viên: </label>
                                         <input readOnly
+                                            value={role}
                                             type="text" required name="role" placeholder="Chức danh....."
                                             className='mt-2 p-2 border-2 border-orange-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 w-full' />
                                     </div>
