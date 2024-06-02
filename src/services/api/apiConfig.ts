@@ -7,3 +7,7 @@ export const registerAccountByAdminEndpoint = `${BASE_URL}/Account/CreateAccount
 //User endpoints
 export const getAllUsersEndpoint = `${BASE_URL}/Account/GetPagedListAccountQuery`;
 export const getUserByIdEndpoint = `${BASE_URL}/Account/GetAccountById`;
+
+//Category endpoints
+export const getAllCategoriesEndpoint = `${BASE_URL}/Category/GetPagedListCategory`;
+export const createCategoryEndpoint = `${BASE_URL}/Category/CreateCategory`;
