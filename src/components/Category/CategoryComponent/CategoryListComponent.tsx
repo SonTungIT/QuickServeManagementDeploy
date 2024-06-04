@@ -32,6 +32,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { ICategory } from '../../../models/Categoty';
 import PopupCategoryDetail from '../../Popup/PopupCategoryDetail';
 import PopupCheck from '../../Popup/PopupCheck';
+import PopupRenameCategory from '../../Popup/PopupRenameCategory';
 
 const columns: MRT_ColumnDef<ICategory>[] = [
     {
@@ -46,7 +47,7 @@ const columns: MRT_ColumnDef<ICategory>[] = [
             return status === 1 ? (
                 <CheckCircleOutlineIcon className="text-green-500" />
             ) : (
-                <HighlightOffIcon />
+                <HighlightOffIcon className='text-red-500' />
             );
         },
     },
@@ -84,6 +85,7 @@ const CategoryListComponent = () => {
         useState<boolean>(false);
     const [onPopupCheckDelete, setOnPopupCheckDelete] =
         useState<boolean>(false);
+    const [openPopupRename, setOpenPopupRename] = useState<boolean>(false);
     const [selectedCateId, setSelectedCateId] = useState<number | null>(null);
 
     useEffect(() => {
@@ -133,6 +135,10 @@ const CategoryListComponent = () => {
         setSelectedCateId(id);
         setOnPopupCheckDelete(true);
     };
+    const handleOpenPopupRenameCategory = (id: number) => {
+        setSelectedCateId(id);
+        setOpenPopupRename(true);
+    }
 
     const handleUpdateStatusCategory = () => {
         if (selectedCateId !== null) {
@@ -213,8 +219,8 @@ const CategoryListComponent = () => {
                                                 {flexRender(
                                                     header.column.columnDef
                                                         .Header ??
-                                                        header.column.columnDef
-                                                            .header,
+                                                    header.column.columnDef
+                                                        .header,
                                                     header.getContext(),
                                                 )}
                                             </Typography>
@@ -264,15 +270,26 @@ const CategoryListComponent = () => {
                 closePopup={handlePopupClose}
             />
             {cateData && (
-                <PopupCategoryDetail
-                    cate={cateData}
-                    onPopupDetail={onPopupCategoryDetail}
-                    setOnPopupDetail={setOnPopupCategoryDetail}
-                    onChangeStatus={() =>
-                        handleOpenPopupUpdateCategory(cateData.id)
-                    }
-                    onDelete={() => handleOpenPopupDeleteCategory(cateData.id)}
-                />
+                <>
+                    <PopupCategoryDetail
+                        cate={cateData}
+                        onPopupDetail={onPopupCategoryDetail}
+                        setOnPopupDetail={setOnPopupCategoryDetail}
+                        onChangeStatus={() =>
+                            handleOpenPopupUpdateCategory(cateData.id)
+                        }
+                        onDelete={() => handleOpenPopupDeleteCategory(cateData.id)}
+                        onRename={() => handleOpenPopupRenameCategory(cateData.id)}
+                    />
+                    <PopupRenameCategory
+                        onClosePopupDetail={() => setOnPopupCategoryDetail(false)}
+                        open={openPopupRename}
+                        closePopup={() => setOpenPopupRename(false)}
+                        name={cateData?.name ?? ''}
+                        cateId={cateData.id}
+                    />
+                </>
+
             )}
 
             {/* Update Status */}
@@ -294,6 +311,7 @@ const CategoryListComponent = () => {
                 onAccept={handleDeleteCategory}
                 onCancel={() => setOnPopupCheckDelete(false)}
             />
+
         </Stack>
     );
 };

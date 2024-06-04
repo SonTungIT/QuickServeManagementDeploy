@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ICategory, ICategoryCreate } from '../../models/Categoty';
+import {
+    ICategory,
+    ICategoryCreate,
+    ICategoryRename,
+} from '../../models/Categoty';
 import axios from 'axios';
 import {
     createCategoryEndpoint,
     deleteCategoryEndpoint,
     getAllCategoriesEndpoint,
+    renameCategoryEndpoint,
     updateStatusCategoryEndpoint,
 } from '../api/apiConfig';
 import { toast } from 'react-toastify';
@@ -68,7 +73,7 @@ export const createCategory = createAsyncThunk<ICategoryCreate, Object>(
 export const updateStatusCategoryById = createAsyncThunk<
     ICategory,
     { id: number }
->('users/updateStatusCategoryById', async ({ id }, thunkAPI) => {
+>('categories/updateStatusCategoryById', async ({ id }, thunkAPI) => {
     try {
         const token = sessionStorage.getItem('quickServeToken');
         const response = await axios.put(
@@ -80,7 +85,11 @@ export const updateStatusCategoryById = createAsyncThunk<
                 },
             },
         );
-        toast.success('Cập nhật trạng thái thể loại thành công !');
+        if (response.data.success === 'true') {
+            toast.success('Cập nhật thể loại thành công !');
+        } else {
+            toast.error('Cập nhật thể loại không thành công !');
+        }
         return response.data;
     } catch (error: any) {
         toast.error('Cập nhật trạng thái thể loại không thành công!');
@@ -88,7 +97,7 @@ export const updateStatusCategoryById = createAsyncThunk<
     }
 });
 export const deleteCategoryById = createAsyncThunk<void, { id: number }>(
-    'users/deleteCategoryById',
+    'categories/deleteCategoryById',
     async ({ id }, thunkAPI) => {
         try {
             const token = sessionStorage.getItem('quickServeToken');
@@ -100,10 +109,36 @@ export const deleteCategoryById = createAsyncThunk<void, { id: number }>(
                     },
                 },
             );
-            toast.success('Cập nhật trạng thái thể loại thành công !');
+            if (response.data.success === 'true') {
+                toast.success('Xoá thể loại thành công !');
+            } else {
+                toast.error('Xoá thể loại không thành công !');
+            }
             return response.data;
         } catch (error: any) {
-            toast.error('Cập nhật trạng thái thể loại không thành công!');
+            toast.error('Xoá thể loại không thành công !');
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    },
+);
+export const renameCategory = createAsyncThunk<ICategory, ICategoryRename>(
+    'categories/renameCategory',
+    async ({ id, name }, thunkAPI) => {
+        try {
+            const token = sessionStorage.getItem('quickServeToken');
+            const response = await axios.put(
+                `${renameCategoryEndpoint}`,
+                { id, name },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                },
+            );
+            toast.success('Đổi tên thể loại thành công !');
+            return response.data;
+        } catch (error: any) {
+            toast.error('Đổi tên thể loại không thành công !');
             return thunkAPI.rejectWithValue(error.response.data);
         }
     },
@@ -161,6 +196,17 @@ export const categorySlice = createSlice({
             state.success = true;
         });
         builder.addCase(deleteCategoryById.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload as string[];
+        });
+        builder.addCase(renameCategory.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(renameCategory.fulfilled, (state) => {
+            state.loading = false;
+            state.success = true;
+        });
+        builder.addCase(renameCategory.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload as string[];
         });
