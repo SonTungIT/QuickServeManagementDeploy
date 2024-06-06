@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const schemaCategory = yup.object().shape({
+export const schemaCreateIngredientTypes = yup.object().shape({
     name: yup
         .string()
         .required('Tên thể loại không đuợc để trống')
