@@ -81,8 +81,8 @@ export const updateStatusCategoryById = createAsyncThunk<
     try {
         const token = sessionStorage.getItem('quickServeToken');
         const response = await axios.put(
-            `${updateStatusCategoryEndpoint}`,
-            { id },
+            `${updateStatusCategoryEndpoint}/${id}/status`,
+            {},
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -131,7 +131,7 @@ export const renameCategory = createAsyncThunk<ICategory, ICategoryRename>(
         try {
             const token = sessionStorage.getItem('quickServeToken');
             const response = await axios.put(
-                `${renameCategoryEndpoint}`,
+                `${renameCategoryEndpoint}/${id}`,
                 { id, name },
                 {
                     headers: {

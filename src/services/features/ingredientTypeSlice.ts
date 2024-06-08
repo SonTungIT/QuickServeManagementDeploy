@@ -100,7 +100,7 @@ export const updateStatusIngredientTypeById = createAsyncThunk<IIngredientType, 
         try {
             const token = sessionStorage.getItem('quickServeToken');
             const response = await axios.put(
-                `${updateStatusIngredientType}/${id}`,
+                `${updateStatusIngredientType}/${id}/status`,
                 {},
                 {
                     headers: {
@@ -148,7 +148,7 @@ export const renameIngredientType = createAsyncThunk<IIngredientType, { id: numb
         try {
             const token = sessionStorage.getItem('quickServeToken');
             const response = await axios.put(
-                `${renameIngredientTypeEndpoint}`,
+                `${renameIngredientTypeEndpoint}/${id}`,
                 { id, name },
                 {
                     headers: {
