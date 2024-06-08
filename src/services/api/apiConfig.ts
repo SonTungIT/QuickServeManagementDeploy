@@ -17,8 +17,16 @@ export const renameCategoryEndpoint = `${BASE_URL}/Categories`;
 
 
 //INGREDIENT endpoints
-export const getAllIngredientEndpoint = `${BASE_URL}/Ingredient/GetPagedListIngredient`;
+export const getAllIngredientEndpoint = `${BASE_URL}/Ingredients/paged`;
+export const getIngredientByIdEndpoint = `${BASE_URL}/Ingredients`;
+export const createIngredientEndpoint = `${BASE_URL}/Ingredients`;
+export const updateIngredientEndpoint = `${BASE_URL}/Ingredients`; 
+export const deleteIngredientEndpoint = `${BASE_URL}/Ingredients`;
 
 //INGREDIENT TYPE ENDPOINTS
-export const getAllIngredientTypesEndpoint = `${BASE_URL}/IngredientType/GetPagedListIngredientType`;
-export const createIngredientTypeEndpoint = `${BASE_URL}/IngredientType/CreateIngredientType`;
+export const getAllIngredientTypesEndpoint = `${BASE_URL}/IngredientTypes/paged`;
+export const getIngredientTypeByIdEndpoint = `${BASE_URL}/IngredientTypes`;
+export const createIngredientTypeEndpoint = `${BASE_URL}/IngredientTypes`;
+export const updateStatusIngredientType= `${BASE_URL}/IngredientTypes/status`;
+export const renameIngredientTypeEndpoint = `${BASE_URL}/IngredientTypes`;
+export const deleteIngredientTypeEndpoint = `${BASE_URL}/IngredientTypes`;
