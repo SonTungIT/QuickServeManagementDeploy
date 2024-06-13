@@ -9,6 +9,9 @@ import { IProductTemplate } from '../../models/ProductTemplate';
 import CommonTable from '../CommonTable/CommonTable';
 import { getAllProductTemplates, getProductTemplateById } from '../../services/features/productTemplateSlice';
 import PopupDetailProductTemplate from '../Popup/PopupDetailProductTemplate';
+import { formatAnyDate } from '../../utils';
+import { useNavigate } from 'react-router-dom';
+import PopupCerateProductTemplate from '../Popup/PopupCerateProductTemplate';
 
 const columns: MRT_ColumnDef<IProductTemplate>[] = [
     {
@@ -51,34 +54,40 @@ const columns: MRT_ColumnDef<IProductTemplate>[] = [
         accessorKey: 'description',
         header: 'Mô tả'
     },
-        {
-            accessorKey: 'created',
-            header: 'Ngày tạo',
-            Cell: ({ cell }) => {
-                const created = cell.row.original.created;
-                return typeof created === 'string'
-                    ? created.split('T')[0]
-                    : new Date(created).toISOString().split('T')[0];
-            },
+    {
+        accessorKey: 'created',
+        header: 'Ngày tạo',
+        Cell: ({ cell }) => {
+            return formatAnyDate(new Date(cell.row.original.created));
         },
-
+    },
 ];
 
 const ProductTemplateComponent = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const [isPopupCareateOpen, setIsPopupCreateOpen] = useState(false);
+
     const { productTemplates } = useAppSelector((state) => state.productTemplates);
 
     const [onPopupProductTemplateDetail, setOnPopupProductTemplateDetail] = useState<boolean>(false);
 
     useEffect(() => {
-            dispatch(getAllProductTemplates());
+        dispatch(getAllProductTemplates());
     }, [dispatch]);
 
     const handleShowPopupProductTemplateDetail = (productTemplate: IProductTemplate) => {
-        dispatch(getProductTemplateById({id: productTemplate.id}))
+        dispatch(getProductTemplateById({ id: productTemplate.id }))
         setOnPopupProductTemplateDetail(true);
     }
 
+    const handleProductTemplateStep = (id: number) => {
+        navigate(`/product-template-step/${id}`);
+    }
+    // handle show popup create product template
+    const handleOpenPopupCreate = () => {
+        setIsPopupCreateOpen(true);
+    };
 
     return (
         <Stack sx={{ m: '2rem 0' }}>
@@ -88,8 +97,9 @@ const ProductTemplateComponent = () => {
                 onRowDoubleClick={handleShowPopupProductTemplateDetail}
                 toolbarButtons={
                     <Button
+
                         variant="contained"
-                        onClick={() => {}}
+                        onClick={handleOpenPopupCreate}
                         sx={{
                             color: 'black',
                             backgroundColor: 'orange',
@@ -99,9 +109,14 @@ const ProductTemplateComponent = () => {
                     </Button>
                 }
             />
+            <PopupCerateProductTemplate
+                isPopupOpen={isPopupCareateOpen}
+                closePopup={() => setIsPopupCreateOpen(false)}
+            />
             <PopupDetailProductTemplate
                 onPopupProductTemplateDetail={onPopupProductTemplateDetail}
                 setOnPopupProductTemplateDetail={setOnPopupProductTemplateDetail}
+                onProductTemplateStep={handleProductTemplateStep}
             />
         </Stack>
     );
