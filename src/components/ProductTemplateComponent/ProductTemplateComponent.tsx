@@ -7,11 +7,14 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { IProductTemplate } from '../../models/ProductTemplate';
 import CommonTable from '../CommonTable/CommonTable';
-import { getAllProductTemplates, getProductTemplateById } from '../../services/features/productTemplateSlice';
+import { deleteProductTemplate, getAllProductTemplates, getProductTemplateById } from '../../services/features/productTemplateSlice';
 import PopupDetailProductTemplate from '../Popup/PopupDetailProductTemplate';
 import { formatAnyDate } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import PopupCerateProductTemplate from '../Popup/PopupCerateProductTemplate';
+import PopupCheck from '../Popup/PopupCheck';
+import PopupChangeImageProductTemplate from '../Popup/PopupChangeImageProductTemplate';
+import PopupUpdateProductTemplate from '../Popup/PopupUpdateProductTemplate';
 
 const columns: MRT_ColumnDef<IProductTemplate>[] = [
     {
@@ -27,12 +30,9 @@ const columns: MRT_ColumnDef<IProductTemplate>[] = [
         header: 'Tên sản phẩm',
     },
     {
-        accessorKey: 'quantity',
-        header: 'Số lượng',
-    },
-    {
         accessorKey: 'size',
         header: 'Kích thước',
+        Cell: ({ cell }) => cell.row.original.size === 'small' ? 'Nhỏ' : cell.row.original.size === 'medium' ? 'Vừa' : 'Lớn',
     },
     {
         accessorKey: 'status',
@@ -66,11 +66,17 @@ const columns: MRT_ColumnDef<IProductTemplate>[] = [
 const ProductTemplateComponent = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const [isPopupCareateOpen, setIsPopupCreateOpen] = useState(false);
 
     const { productTemplates } = useAppSelector((state) => state.productTemplates);
+    const productTemplateData = useAppSelector((state) => state.productTemplates.productTemplate);
 
+    const [selectedProuctTemlateId, setSelectedProductTemplateId] = useState<number | null>(null);
+
+    const [isPopupCareateOpen, setIsPopupCreateOpen] = useState(false);
     const [onPopupProductTemplateDetail, setOnPopupProductTemplateDetail] = useState<boolean>(false);
+    const [onPopupCheckDelete, setOnPopupCheckDelete] = useState<boolean>(false);
+    const [openPopupChangeImage, setOpenPopupChangeImage] = useState<boolean>(false);
+    const [openPopupUpdateProductTemplate, setOpenPopupUpdateProductTemplate] = useState<boolean>(false);
 
     useEffect(() => {
         dispatch(getAllProductTemplates());
@@ -88,6 +94,32 @@ const ProductTemplateComponent = () => {
     const handleOpenPopupCreate = () => {
         setIsPopupCreateOpen(true);
     };
+    const handleOpenPopupDeleteProductTemplate = (productTemplateId: number) => {
+        setSelectedProductTemplateId(productTemplateId);
+        setOnPopupCheckDelete(true);
+    };
+
+    const handleDeleteProductTemplate = () => {
+        if (selectedProuctTemlateId !== null) {
+            dispatch(deleteProductTemplate({ id: selectedProuctTemlateId }))
+                .unwrap()
+                .then(() => {
+                    setOnPopupProductTemplateDetail(false);
+                    setOnPopupCheckDelete(false);
+                    dispatch(getAllProductTemplates());
+                });
+        }
+    };
+    // Handle change image ingredient
+    const handleOpenPopupChangeImage = (productTemplateId: number) => {
+        setSelectedProductTemplateId(productTemplateId)
+        setOpenPopupChangeImage(true)
+    };
+
+    const handleOpenPopupUpdateProductTempalte = () => {
+        setOpenPopupUpdateProductTemplate(true)
+    };
+
 
     return (
         <Stack sx={{ m: '2rem 0' }}>
@@ -113,12 +145,50 @@ const ProductTemplateComponent = () => {
                 isPopupOpen={isPopupCareateOpen}
                 closePopup={() => setIsPopupCreateOpen(false)}
             />
-            <PopupDetailProductTemplate
-                onPopupProductTemplateDetail={onPopupProductTemplateDetail}
-                setOnPopupProductTemplateDetail={setOnPopupProductTemplateDetail}
-                onProductTemplateStep={handleProductTemplateStep}
+            {productTemplateData && (
+                <>
+                    <PopupDetailProductTemplate
+                        onPopupProductTemplateDetail={onPopupProductTemplateDetail}
+                        setOnPopupProductTemplateDetail={setOnPopupProductTemplateDetail}
+                        onProductTemplateStep={handleProductTemplateStep}
+                        onDelete={() =>
+                            handleOpenPopupDeleteProductTemplate(productTemplateData?.id)
+                        }
+                        onChangeImage={() =>
+                            handleOpenPopupChangeImage(productTemplateData?.id)
+                        }
+                        onUpdate={() => {
+                            handleOpenPopupUpdateProductTempalte()
+                        }}
+                    />
+                    <PopupChangeImageProductTemplate
+                        onClosePopupDetail={() =>
+                            setOnPopupProductTemplateDetail(false)
+                        }
+                        open={openPopupChangeImage}
+                        closePopup={() => setOpenPopupChangeImage(false)}
+                        imageUrl={productTemplateData?.imageUrl ?? ''}
+                        productTemplateID={productTemplateData?.id}
+                        name={productTemplateData?.name ?? ''}
+                    />
+                    <PopupUpdateProductTemplate
+                        onClosePopupDetail={() =>
+                            setOnPopupProductTemplateDetail(false)
+                        }
+                        open={openPopupUpdateProductTemplate}
+                        closePopup={() => setOpenPopupUpdateProductTemplate(false)}
+                    />
+                </>)}
+            <PopupCheck
+                open={onPopupCheckDelete}
+                content="Bạn có chắc chắn muốn xoá mẫu sản phẩm này không?"
+                titleAccept="Có"
+                titleCancel="Không"
+                onAccept={handleDeleteProductTemplate}
+                onCancel={() => setOnPopupCheckDelete(false)}
             />
         </Stack>
+
     );
 };
 
