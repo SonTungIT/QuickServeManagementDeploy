@@ -1,7 +1,8 @@
-export const BASE_URL = 'https://quick-serve-server.azurewebsites.net/api/v1';
+export const BASE_URL = 'https://quickserve-api.azurewebsites.net/api/v1';
 
 //Athentication endpoints
 export const loginEndpoint = `${BASE_URL}/Accounts/authenticate`;
+export const refreshTokenEndpoint = `${BASE_URL}/Accounts/refresh`;
 export const registerAccountByAdminEndpoint = `${BASE_URL}/Accounts`;
 
 //User endpoints
@@ -46,3 +47,22 @@ export const getTemplateStepByIdEndpoint = `${BASE_URL}/TemplateSteps`;
 export const createTemplateStepEndpoint = `${BASE_URL}/TemplateSteps`;
 export const renameTemplateStepEndpoint = `${BASE_URL}/TemplateSteps`;
 export const deleteTemplateStepEndpoint = `${BASE_URL}/TemplateSteps`;
+
+//Store endpoints
+export const getAllStoreEndpoint = `${BASE_URL}/Stores/paged`;
+export const getStoreByIdEndpoint = `${BASE_URL}/Stores`;
+export const createStoreEndpoint = `${BASE_URL}/Stores`;
+
+
+//Employees endpoints
+export const getAllEmployeeEndpoint = `${BASE_URL}/employees/paged`;
+export const createEmployeeEndpoint = `${BASE_URL}/employees`;
+
+// Ingredient Type Template Steps endpoints
+export const getIngredientTypeTemplateStepsEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps/all`;
+export const getIngredientTypeTemplateStepByIdEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
+export const createIngredientTypeTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
+export const updateStatusIngredientTypeTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
+export const updateIngredientTypeTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
+export const deleteIngredientTypeTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
+
