@@ -44,9 +44,9 @@ export const changeImageProductTemplateEndpoint = `${BASE_URL}/ProductTemplates`
 //Template Step endpoints
 export const getAllTemplateStepsEndpoint = `${BASE_URL}/TemplateSteps/paged`;
 export const getTemplateStepByIdEndpoint = `${BASE_URL}/TemplateSteps`;
-export const createTemplateStepEndpoint = `${BASE_URL}/TemplateSteps`;
+export const createTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
 export const renameTemplateStepEndpoint = `${BASE_URL}/TemplateSteps`;
-export const deleteTemplateStepEndpoint = `${BASE_URL}/TemplateSteps`;
+export const deleteTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
 
 //Store endpoints
 export const getAllStoreEndpoint = `${BASE_URL}/Stores/paged`;
@@ -55,8 +55,8 @@ export const createStoreEndpoint = `${BASE_URL}/Stores`;
 
 
 //Employees endpoints
-export const getAllEmployeeEndpoint = `${BASE_URL}/employees/paged`;
-export const createEmployeeEndpoint = `${BASE_URL}/employees`;
+export const getAllEmployeeEndpoint = `${BASE_URL}/Stores/employees/paged`;
+export const createEmployeeEndpoint = `${BASE_URL}/Stores/employees`;
 
 // Ingredient Type Template Steps endpoints
 export const getIngredientTypeTemplateStepsEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps/all`;
@@ -66,3 +66,16 @@ export const updateStatusIngredientTypeTemplateStepEndpoint = `${BASE_URL}/Ingre
 export const updateIngredientTypeTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
 export const deleteIngredientTypeTemplateStepEndpoint = `${BASE_URL}/IngredientTypeTemplateSteps`;
 
+//Session Endpouints
+export const getAllSessionsEndpoint = `${BASE_URL}/Sessions/paged`;
+export const getSessionByIdEndpoint = `${BASE_URL}/Sessions`;
+export const createSessionEndpoint = `${BASE_URL}/Sessions`;
+export const updateSessionEndpoint = `${BASE_URL}/Sessions`;
+export const deleteSessionEndpoint = `${BASE_URL}/Sessions`;
+
+//Ingredient Session endpoints
+export const getIngredientSessionEndpoint = `${BASE_URL}/IngredientSessions`;
+export const createIngredientSessionEndpoint = `${BASE_URL}/IngredientSessions`;
+export const updateIngredientSessionEndpoint = `${BASE_URL}/IngredientSessions`;
+export const deleteIngredientSessionEndpoint = `${BASE_URL}/IngredientSessions`;
+export const clearIngredientSessionEndpoint = `${BASE_URL}/IngredientSessions`;

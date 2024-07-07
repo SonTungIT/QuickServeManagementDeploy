@@ -1,19 +1,15 @@
-import { XMarkIcon } from '@heroicons/react/16/solid';
-import { IStore } from '../../models/Store';
+import { XMarkIcon } from "@heroicons/react/16/solid";
+import { ISession } from "../../../models/Session";
 
-
-type PopupStoreDetailProps = {
-    store: IStore | null;
+type PopupDetailSessionProps = {
+    session?: ISession | null;
     onPopupDetail: boolean;
-    setOnPopupDetail: React.Dispatch<React.SetStateAction<boolean>>;
-    onRename: () => void;
-}
-
-const PopupStoreDetail: React.FC<PopupStoreDetailProps> = ({
-    store,
+    setOnPopupDetail: (value: boolean) => void;
+};
+const PopupDetailSession: React.FC<PopupDetailSessionProps> = ({
+    session,
     onPopupDetail,
-    setOnPopupDetail,
-    onRename,
+    setOnPopupDetail
 }) => {
     return (
         <div
@@ -54,55 +50,41 @@ const PopupStoreDetail: React.FC<PopupStoreDetailProps> = ({
                                     <hr className="mt-2 text-black-700" />
                                 </div>
                                 <div className="mt-4 border-t grid grid-cols-2 gap-4 p-8">
-                                    <div>
-                                        <span className="text-sm text-back-500 font-bold">
-                                            Tên cửa hàng
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>{store?.name}</span>
-                                    </div>
+
 
                                     <div>
                                         <span className="text-sm text-back-500 font-bold">
-                                            Người tạo
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>{store?.createdBy}</span>
-                                    </div>
-                                    <div>
-                                        <span className="text-sm text-back-500 font-bold">
-                                            Ngày tạo
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            {typeof store?.created === 'string'
-                                                ? new Date(
-                                                    store.created,
-                                                ).toLocaleDateString('vi-VN')
-                                                : store?.created.toLocaleDateString(
-                                                    'vi-VN',
-                                                )}
+                                            implement nội dung trái
                                         </span>
                                     </div>
                                     <div className="w-auto flex gap-4">
-                                        <button
-                                            onClick={onRename}
-                                            className="text-xs w-24 border border-yellow-500 p-1 bg-yellow-500 text-white-900 font-bold rounded-lg"
-                                        >
-                                            Sửa tên
-                                        </button>
+                                        implement nội dung phải
                                     </div>
                                 </div>
+                            </div>
+
+                        </div>
+                        <div className="border-t-4 w-auto flex gap-4">
+                            <div className="mt-5 gap-5">
+                                <button
+                                    // onClick={onDelete}
+                                    className="text-xs w-24 border border-red-500 p-3 bg-red-500 text-white-900 font-bold rounded-lg"
+                                >
+                                    Xoá Ca
+                                </button>
+                                <button
+                                    // onClick={onRename}
+                                    className="text-xs w-24 border border-yellow-500  bg-yellow-500 ml-5 text-white-900 font-bold rounded-lg p-3"
+                                >
+                                    Sửa ca
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default PopupStoreDetail;
+export default PopupDetailSession
